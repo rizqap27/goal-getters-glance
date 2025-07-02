@@ -4,4 +4,6 @@ export interface Goal {
   name: string;
   completed: boolean;
   createdAt: Date;
+  deadline: Date;
+  estimatedTime: number; // in minutes
 }

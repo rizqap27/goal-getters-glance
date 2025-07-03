@@ -1,10 +1,10 @@
+
 import React, { useState, useEffect } from 'react';
 import { Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import GoalList from '@/components/GoalList';
 import AddGoalModal from '@/components/AddGoalModal';
 import ProgressChart from '@/components/ProgressChart';
-import AdMobBanner from '@/components/AdMobBanner';
 import { Goal } from '@/types/Goal';
 import { loadGoals, saveGoals } from '@/utils/localStorage';
 
@@ -65,11 +65,8 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col">
-      {/* Top AdMob Banner */}
-      <AdMobBanner adUnitId="ca-app-pub-2724188999443747/3948444678" />
-      
-      <div className="flex-1 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+      <div className="p-4">
         <div className="max-w-md mx-auto">
           {/* Header */}
           <div className="text-center mb-8 pt-8">
@@ -117,9 +114,6 @@ const Index = () => {
           />
         </div>
       </div>
-      
-      {/* Bottom AdMob Banner */}
-      <AdMobBanner adUnitId="ca-app-pub-2724188999443747/4115680222" />
     </div>
   );
 };

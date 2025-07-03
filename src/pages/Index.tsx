@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import GoalList from '@/components/GoalList';
 import AddGoalModal from '@/components/AddGoalModal';
 import ProgressChart from '@/components/ProgressChart';
+import AdMobBanner from '@/components/AdMobBanner';
 import { Goal } from '@/types/Goal';
 import { loadGoals, saveGoals } from '@/utils/localStorage';
 
@@ -64,53 +65,58 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
-      <div className="max-w-md mx-auto">
-        {/* Header */}
-        <div className="text-center mb-8 pt-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">Daily Goals</h1>
-          <p className="text-gray-600">Track your daily goals with time management</p>
-        </div>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col">
+      <div className="flex-1 p-4">
+        <div className="max-w-md mx-auto">
+          {/* Header */}
+          <div className="text-center mb-8 pt-8">
+            <h1 className="text-3xl font-bold text-gray-800 mb-2">Daily Goals</h1>
+            <p className="text-gray-600">Track your daily goals with time management</p>
+          </div>
 
-        {/* Today's Summary */}
-        <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
-          <h2 className="text-lg font-semibold text-gray-800 mb-4">Today's Progress</h2>
-          <ProgressChart goals={todayGoals} />
-          <div className="mt-4 text-center">
-            <div className="text-sm text-gray-600">
-              Estimated time: {formatTime(completedTime)} / {formatTime(totalEstimatedTime)}
+          {/* Today's Summary */}
+          <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
+            <h2 className="text-lg font-semibold text-gray-800 mb-4">Today's Progress</h2>
+            <ProgressChart goals={todayGoals} />
+            <div className="mt-4 text-center">
+              <div className="text-sm text-gray-600">
+                Estimated time: {formatTime(completedTime)} / {formatTime(totalEstimatedTime)}
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Add Goal Button */}
-        <div className="mb-6">
-          <Button 
-            onClick={() => setIsAddModalOpen(true)} 
-            className="w-full h-12 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg shadow-md transition-all duration-200 flex items-center justify-center gap-2"
-          >
-            <Plus size={20} />
-            Add Daily Goal
-          </Button>
-        </div>
+          {/* Add Goal Button */}
+          <div className="mb-6">
+            <Button 
+              onClick={() => setIsAddModalOpen(true)} 
+              className="w-full h-12 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg shadow-md transition-all duration-200 flex items-center justify-center gap-2"
+            >
+              <Plus size={20} />
+              Add Daily Goal
+            </Button>
+          </div>
 
-        {/* Goals List */}
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          <h2 className="text-lg font-semibold text-gray-800 mb-4">My Goals</h2>
-          <GoalList 
-            goals={goals.sort((a, b) => new Date(a.deadline).getTime() - new Date(b.deadline).getTime())} 
-            onToggleComplete={toggleGoalComplete} 
-            onDelete={deleteGoal} 
+          {/* Goals List */}
+          <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
+            <h2 className="text-lg font-semibold text-gray-800 mb-4">My Goals</h2>
+            <GoalList 
+              goals={goals.sort((a, b) => new Date(a.deadline).getTime() - new Date(b.deadline).getTime())} 
+              onToggleComplete={toggleGoalComplete} 
+              onDelete={deleteGoal} 
+            />
+          </div>
+
+          {/* Add Goal Modal */}
+          <AddGoalModal 
+            isOpen={isAddModalOpen} 
+            onClose={() => setIsAddModalOpen(false)} 
+            onAddGoal={addGoal} 
           />
         </div>
-
-        {/* Add Goal Modal */}
-        <AddGoalModal 
-          isOpen={isAddModalOpen} 
-          onClose={() => setIsAddModalOpen(false)} 
-          onAddGoal={addGoal} 
-        />
       </div>
+      
+      {/* AdMob Banner Footer */}
+      <AdMobBanner adUnitId="ca-app-pub-2724188999443747/4115680222" />
     </div>
   );
 };

@@ -66,6 +66,9 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col">
+      {/* Top AdMob Banner */}
+      <AdMobBanner adUnitId="ca-app-pub-2724188999443747/3948444678" />
+      
       <div className="flex-1 p-4">
         <div className="max-w-md mx-auto">
           {/* Header */}
@@ -115,7 +118,7 @@ const Index = () => {
         </div>
       </div>
       
-      {/* AdMob Banner Footer */}
+      {/* Bottom AdMob Banner */}
       <AdMobBanner adUnitId="ca-app-pub-2724188999443747/4115680222" />
     </div>
   );
